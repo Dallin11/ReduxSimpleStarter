@@ -11,15 +11,23 @@ class SearchBar extends Component {
    
     render() {
         return (
-            <div>
+            <div className="search-bar">
         <input 
         value = {this.state.term}
-        onChange={event =>  this.setState({ term: event.target.value })} />
+         onChange={event => this.onInputChange(event.target.value)} />
             </div>
             //Just to reference state not to define it reference is ok to use this.state^
     ); 
     }
-    }
+
+  onInputChange(term) {
+    this.setState({ term });
+    this.props.onSearchTermChange(term);
+  }
+}
+
+
+
 //Each class has its own state, when something is changed the render component reruns.
 //Functional components do not have state only class based components have state.
 // Only inside the constructor function do we define state. No where else... ever. 
